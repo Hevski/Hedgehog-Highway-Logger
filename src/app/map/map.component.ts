@@ -21,6 +21,7 @@ export class MapComponent implements OnInit {
   vectorSource: any;
   vectorLayer: any;
   raster: any;
+  modify: any;
   
   constructor() { }
   
@@ -33,7 +34,7 @@ export class MapComponent implements OnInit {
               // this.vectorLayer.setZIndex(999);
             
   initialiseMap() {
-    const woodilee = [-4.14291973, 55.93130112,];
+    const woodilee = [-4.14291973, 55.93130112];
     const woodileeWebMercator = fromLonLat(woodilee);
     this.vectorSource = new VectorSource();
     const raster = new TileLayer({ source: new OSM() });
@@ -41,19 +42,19 @@ export class MapComponent implements OnInit {
       source: this.vectorSource,
       style: new Style({
         fill: new Fill({
-            color: 'rgba(255, 255, 255, 0.2)'
+          color: 'rgba(255, 255, 255, 0.2)'
           }),
           stroke: new Stroke({
-              color: '#ffcc33',
-              width: 2
-            }),
-            image: new CircleStyle({
-                radius: 7,
-                fill: new Fill({
-                    color: '#ffcc33'
-                  })
-                })
-              })
+            color: '#ffcc33',
+            width: 2
+          }),
+          image: new CircleStyle({
+            radius: 7,
+            fill: new Fill({
+            color: '#ffcc33'
+            })
+          })
+        })
     });
     
     this.map = new Map({
@@ -66,6 +67,9 @@ export class MapComponent implements OnInit {
     });
   }
   
+  /**
+   * Adds interactions to the map
+   */
   addInteractions() {
     this.draw = new Draw({
       source: this.vectorSource,
@@ -74,6 +78,8 @@ export class MapComponent implements OnInit {
     this.map.addInteraction(this.draw);
     this.snap = new Snap({ source: this.vectorSource });
     this.map.addInteraction(this.snap);
+    this.modify = new Modify({ source: this.vectorSource });
+    this.map.addInteraction(this.modify);
   }
 }
           
