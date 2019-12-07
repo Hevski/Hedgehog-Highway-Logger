@@ -28,25 +28,7 @@ export class MapComponent implements OnInit {
     this.initialiseMap();
     this.typeSelect = document.getElementById('type');
     this.addInteractions();
-    console.log(this.typeSelect);
-  }
-    
-    // style: new Style({
-      //   fill: new Fill({
-        //     color: 'rgba(255, 255, 255, 0.2)'
-        //   }),
-        //   stroke: new Stroke({
-          //     color: '#ffcc33',
-          //     width: 2
-          //   }),
-          //   image: new CircleStyle({
-            //     radius: 7,
-            //     fill: new Fill({
-              //       color: '#ffcc33'
-              //     })
-              //   })
-              // })
-              
+  }   
               // this.map.addLayer(this.vectorLayer);
               // this.vectorLayer.setZIndex(999);
             
@@ -57,6 +39,21 @@ export class MapComponent implements OnInit {
     const raster = new TileLayer({ source: new OSM() });
     const vectorLayer = new VectorLayer({
       source: this.vectorSource,
+      style: new Style({
+        fill: new Fill({
+            color: 'rgba(255, 255, 255, 0.2)'
+          }),
+          stroke: new Stroke({
+              color: '#ffcc33',
+              width: 2
+            }),
+            image: new CircleStyle({
+                radius: 7,
+                fill: new Fill({
+                    color: '#ffcc33'
+                  })
+                })
+              })
     });
     
     this.map = new Map({
