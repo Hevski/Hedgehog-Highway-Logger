@@ -43,13 +43,13 @@ export class MapComponent implements OnInit {
           color: 'rgba(255, 255, 255, 0.2)'
           }),
           stroke: new Stroke({
-            color: '#ffcc33',
+            color: '#362503',
             width: 2
           }),
           image: new CircleStyle({
-            radius: 7,
+            radius: 5,
             fill: new Fill({
-            color: '#ffcc33'
+            color: '#362503'
             })
           })
         })
