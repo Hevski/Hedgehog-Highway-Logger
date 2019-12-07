@@ -30,8 +30,6 @@ export class MapComponent implements OnInit {
     this.typeSelect = document.getElementById('type');
     this.addInteractions();
   }   
-              // this.map.addLayer(this.vectorLayer);
-              // this.vectorLayer.setZIndex(999);
             
   initialiseMap() {
     const woodilee = [-4.14291973, 55.93130112];
