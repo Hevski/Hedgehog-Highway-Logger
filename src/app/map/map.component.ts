@@ -26,8 +26,8 @@ export class MapComponent implements OnInit {
   
   ngOnInit() {
     this.initialiseMap();
-    this.addInteractions();
     this.typeSelect = document.getElementById('type');
+    this.addInteractions();
     console.log(this.typeSelect);
   }
     
