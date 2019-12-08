@@ -24,8 +24,6 @@ export class MapComponent implements OnInit {
   
   ngOnInit() {
     this.mapService.initialiseMap();
-    this.typeSelect = document.getElementById('type');
-    this.addInteractions();
   }   
             
   /**
@@ -34,7 +32,7 @@ export class MapComponent implements OnInit {
   addInteractions() {
     this.draw = new Draw({
       source: this.mapService.vectorSource,
-      type: this.typeSelect.value
+      type: 'Point'
     });
     this.mapService.map.addInteraction(this.draw);
     this.snap = new Snap({ source: this.mapService.vectorSource });
