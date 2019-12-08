@@ -1,12 +1,6 @@
 import { MapService } from './map.service';
 import { Component, OnInit } from '@angular/core';
 import 'ol/ol.css';
-// import Map from 'ol/Map';
-// import View from 'ol/View';
-// import { OSM, Vector as VectorSource } from 'ol/source';
-// import { fromLonLat } from 'ol/proj';
-// import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style';
-// import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
 import { Draw, Modify, Snap } from 'ol/interaction';
 
 @Component({
