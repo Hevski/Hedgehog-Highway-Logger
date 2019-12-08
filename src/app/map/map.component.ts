@@ -1,11 +1,12 @@
+import { MapService } from './map.service';
 import { Component, OnInit } from '@angular/core';
 import 'ol/ol.css';
-import Map from 'ol/Map';
-import View from 'ol/View';
-import { OSM, Vector as VectorSource } from 'ol/source';
-import { fromLonLat } from 'ol/proj';
-import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style';
-import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
+// import Map from 'ol/Map';
+// import View from 'ol/View';
+// import { OSM, Vector as VectorSource } from 'ol/source';
+// import { fromLonLat } from 'ol/proj';
+// import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style';
+// import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
 import { Draw, Modify, Snap } from 'ol/interaction';
 
 @Component({
@@ -23,61 +24,29 @@ export class MapComponent implements OnInit {
   raster: any;
   modify: any;
   
-  constructor() { }
+  constructor(
+    private mapService: MapService,
+  ) { }
   
   ngOnInit() {
-    this.initialiseMap();
+    this.mapService.initialiseMap();
     this.typeSelect = document.getElementById('type');
     this.addInteractions();
   }   
             
-  initialiseMap() {
-    const woodilee = [-4.14291973, 55.93130112];
-    const woodileeWebMercator = fromLonLat(woodilee);
-    this.vectorSource = new VectorSource();
-    const raster = new TileLayer({ source: new OSM() });
-    const vectorLayer = new VectorLayer({
-      source: this.vectorSource,
-      style: new Style({
-        fill: new Fill({
-          color: 'rgba(255, 255, 255, 0.2)'
-          }),
-          stroke: new Stroke({
-            color: '#362503',
-            width: 2
-          }),
-          image: new CircleStyle({
-            radius: 5,
-            fill: new Fill({
-            color: '#362503'
-            })
-          })
-        })
-    });
-    
-    this.map = new Map({
-      layers:[raster, vectorLayer],
-      target: 'map',
-      view: new View({
-        center: woodileeWebMercator,
-        zoom: 15,
-      })
-    });
-  }
-  
   /**
    * Adds interactions to the map
    */
   addInteractions() {
     this.draw = new Draw({
-      source: this.vectorSource,
+      source: this.mapService.vectorSource,
       type: this.typeSelect.value
     });
-    this.map.addInteraction(this.draw);
-    this.snap = new Snap({ source: this.vectorSource });
-    this.map.addInteraction(this.snap);
-    this.modify = new Modify({ source: this.vectorSource });
-    this.map.addInteraction(this.modify);
+    this.mapService.map.addInteraction(this.draw);
+    this.snap = new Snap({ source: this.mapService.vectorSource });
+    this.mapService.map.addInteraction(this.snap);
+    this.modify = new Modify({ source: this.mapService.vectorSource });
+    this.mapService.map.addInteraction(this.modify);
   }
 }
           
