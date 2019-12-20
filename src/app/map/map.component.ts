@@ -10,12 +10,9 @@ import { Draw, Modify, Snap } from 'ol/interaction';
 })
 export class MapComponent implements OnInit {
   map: any;
-  typeSelect: any;
   snap: any;
   draw: any;
   vectorSource: any;
-  vectorLayer: any;
-  raster: any;
   modify: any;
   highwaySaved = false;
   
