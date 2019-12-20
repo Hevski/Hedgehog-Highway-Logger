@@ -42,6 +42,7 @@ export class MapComponent implements OnInit {
   }
 
   save() {
+    // const modalRef = this.modalService.open(ModalComponent);
     this.highwaySaved = true;
   }
 
