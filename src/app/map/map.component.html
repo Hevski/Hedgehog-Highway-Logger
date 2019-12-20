@@ -13,7 +13,11 @@
   <script src="index.js"></script>
   <form class="form-inline">
     <button type="button" class="btn btn-primary" (click)="addInteractions()">Add Highway</button>
+    <button type="button" class="btn btn-primary" (click)="save()">Save Highway</button>
   </form>
+    <div class="alert alert-success" *ngIf="highwaySaved">
+      Highway Saved Successfully|
+    </div>
 </body>
 
 </html>

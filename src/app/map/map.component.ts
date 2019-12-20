@@ -17,6 +17,7 @@ export class MapComponent implements OnInit {
   vectorLayer: any;
   raster: any;
   modify: any;
+  highwaySaved = false;
   
   constructor(
     private mapService: MapService,
@@ -40,5 +41,13 @@ export class MapComponent implements OnInit {
     this.modify = new Modify({ source: this.mapService.vectorSource });
     this.mapService.map.addInteraction(this.modify);
   }
+
+  save() {
+    this.highwaySaved = true;
+  }
+
+  // add button to save highway
+  // opens modal to add name, current date, possibly e-mail address (if not doing login)
+  // currently having issues with ngbmodule - something to do with ng-bootstrap
 }
           
