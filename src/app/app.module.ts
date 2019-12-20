@@ -1,3 +1,4 @@
+// import { ModalComponent } from './modal/modal.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -10,13 +11,17 @@ import { MapToolsComponent } from './map-tools/map-tools.component';
   declarations: [
     AppComponent,
     MapComponent,
-    MapToolsComponent
+    MapToolsComponent,
+    // ModalComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    // ModalComponent,
+  ],
 })
 export class AppModule { }

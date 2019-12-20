@@ -1,4 +1,5 @@
 import { MapService } from './map.service';
+// import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit } from '@angular/core';
 import 'ol/ol.css';
 import { Draw, Modify, Snap } from 'ol/interaction';
@@ -18,6 +19,7 @@ export class MapComponent implements OnInit {
   
   constructor(
     private mapService: MapService,
+    // public activeModal: NgbActiveModal,
   ) { }
   
   ngOnInit() {
