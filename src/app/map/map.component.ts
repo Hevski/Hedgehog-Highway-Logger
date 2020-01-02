@@ -44,8 +44,9 @@ export class MapComponent implements OnInit {
   }
 
   save() {
-    const modalRef = this.modalService.open(ModalComponent);
-    modalRef.componentInstance.body = 'Helloooooo';
+    console.log('hello?');
+    return this.modalService.open(ModalComponent);
+    // modalRef.componentInstance.body = 'Helloooooo';
     // this.highwaySaved = true;
   }
 
