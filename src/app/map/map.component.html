@@ -15,9 +15,15 @@
     <button type="button" class="btn btn-primary" (click)="addInteractions()">Add Highway</button>
     <button type="button" class="btn btn-primary" (click)="save()">Save Highway</button>
   </form>
-  <!-- <app-modal></app-modal> -->
-    <div class="alert alert-success" *ngIf="highwaySaved">
-      Highway Saved Successfully!
+  <div class="alert alert-success" *ngIf="highwaySaved">
+    Highway Saved Successfully!
+  </div>
+  <ng-sidebar-container class="sidebar">
+    <ng-sidebar class="sidebar-button" position="right" mode="over" [(opened)]="opened">
+      <p>Add Hedgehog Highway</p>
+    </ng-sidebar>
+    <div ng-sidebar-content>
     </div>
+  </ng-sidebar-container>
 </body>
 </html>
