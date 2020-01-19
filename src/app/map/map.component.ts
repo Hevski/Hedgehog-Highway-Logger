@@ -46,10 +46,7 @@ export class MapComponent implements OnInit {
   }
 
   save() {
-    console.log('hello?');
-    return this.modalService.open(ModalComponent);
-    // modalRef.componentInstance.body = 'Helloooooo';
-    // this.highwaySaved = true;
+    this.highwaySaved = true;
   }
 
 
@@ -57,8 +54,5 @@ export class MapComponent implements OnInit {
     this.opened = !this.opened;
   }
 
-  // add button to save highway
-  // opens modal to add name, current date, possibly e-mail address (if not doing login)
-  // currently having issues with ngbmodule - something to do with ng-bootstrap
 }
           
