@@ -3,7 +3,7 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit } from '@angular/core';
 import 'ol/ol.css';
 import { Draw, Modify, Snap } from 'ol/interaction';
-// import { HighwayService } from '../map/highway/highway.service'
+import { HighwayService } from '../map/highway/highway.service'
 import { Highway } from './highway/highway.model';
 
 @Component({
@@ -25,7 +25,7 @@ export class MapComponent implements OnInit {
   constructor(
     private mapService: MapService,
     public activeModal: NgbActiveModal,
-    // private highwayService: HighwayService
+    private highwayService: HighwayService
   ) { }
   
   ngOnInit() {
@@ -52,19 +52,20 @@ export class MapComponent implements OnInit {
     this.opened = !this.opened;
   }
 
-  // saveHighway() {
-  //   const payLoad: Highway = {
-  //     logDate: this.logDate,
-  //     logName: this.logName,
-  //     location: this.highwayService.getHighwayCoordinates(),
-  //   }
-  //   this.highwayService.addHighway(payLoad).subscribe(
-  //     res => {
-  //       console.log(res)
-  //       this.highwaySaved = true;
-  //     }
-  //   )
-  // }
+  saveHighway() {
+    const payLoad: Highway = {
+      logDate: this.logDate,
+      logName: this.logName,
+      location: [0, 1, 1, 0]  //getHighwayCoordinates(),
+    }
+    this.highwayService.addHighway(payLoad).subscribe(
+      res => {
+        console.log(res)
+        this.highwaySaved = true;
+      }
+    )
+  }
+  //TODO: cors error in console, look into this
 
 
 }

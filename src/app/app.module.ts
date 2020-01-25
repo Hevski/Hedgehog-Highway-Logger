@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { SidebarModule } from 'ng-sidebar';
+import { HttpClientModule } from '@angular/common/http'; 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,7 +21,8 @@ import { MapToolsComponent } from './map-tools/map-tools.component';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    SidebarModule.forRoot()
+    SidebarModule.forRoot(),
+    HttpClientModule
   ],
   providers: [NgbActiveModal],
   bootstrap: [AppComponent],
