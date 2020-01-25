@@ -49,4 +49,8 @@ export class MapService {
       })
     });
   }
+
+  getMap() {
+    return this.map;
+  }
 }

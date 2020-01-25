@@ -1,9 +1,10 @@
-import { ModalComponent } from './../modal/modal.component';
 import { MapService } from './map.service';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit } from '@angular/core';
 import 'ol/ol.css';
 import { Draw, Modify, Snap } from 'ol/interaction';
+// import { HighwayService } from '../map/highway/highway.service'
+import { Highway } from './highway/highway.model';
 
 @Component({
   selector: 'app-map',
@@ -18,11 +19,13 @@ export class MapComponent implements OnInit {
   modify: any;
   highwaySaved = false;
   opened: boolean = false;
+  logDate = new Date;
+  logName = ''
   
   constructor(
     private mapService: MapService,
     public activeModal: NgbActiveModal,
-    private modalService: NgbModal
+    // private highwayService: HighwayService
   ) { }
   
   ngOnInit() {
@@ -45,14 +48,24 @@ export class MapComponent implements OnInit {
     this.mapService.map.addInteraction(this.modify);
   }
 
-  save() {
-    this.highwaySaved = true;
-  }
-
-
   toggleSidebar() {
     this.opened = !this.opened;
   }
+
+  // saveHighway() {
+  //   const payLoad: Highway = {
+  //     logDate: this.logDate,
+  //     logName: this.logName,
+  //     location: this.highwayService.getHighwayCoordinates(),
+  //   }
+  //   this.highwayService.addHighway(payLoad).subscribe(
+  //     res => {
+  //       console.log(res)
+  //       this.highwaySaved = true;
+  //     }
+  //   )
+  // }
+
 
 }
           
