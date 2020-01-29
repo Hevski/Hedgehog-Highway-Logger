@@ -19,7 +19,7 @@ export class MapComponent implements OnInit {
   modify: any;
   highwaySaved = false;
   opened: boolean = false;
-  logDate = new Date;
+  // logDate = new Date;
   logName = ''
   
   constructor(
@@ -54,9 +54,9 @@ export class MapComponent implements OnInit {
 
   saveHighway() {
     const payLoad: Highway = {
-      logDate: this.logDate,
-      logName: this.logName,
-      location: [0, 1, 1, 0]  //getHighwayCoordinates(),
+      // logDate: new Date,
+      logName: 'Monty',
+      // location: [0, 1, 1, 0]  //getHighwayCoordinates(),
     }
     this.highwayService.addHighway(payLoad).subscribe(
       res => {
@@ -65,8 +65,6 @@ export class MapComponent implements OnInit {
       }
     )
   }
-  //TODO: cors error in console, look into this
-
 
 }
           
