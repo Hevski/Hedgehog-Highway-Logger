@@ -1,6 +1,6 @@
 import { MapService } from './map.service';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import 'ol/ol.css';
 import { Draw, Modify, Snap } from 'ol/interaction';
 import { HighwayService } from '../map/highway/highway.service'
@@ -20,7 +20,7 @@ export class MapComponent implements OnInit {
   highwaySaved = false;
   opened: boolean = false;
   // logDate = new Date;
-  logName = ''
+  logName = '' //data binding not working from form input
   
   constructor(
     private mapService: MapService,
@@ -55,7 +55,7 @@ export class MapComponent implements OnInit {
   saveHighway() {
     const payLoad: Highway = {
       // logDate: new Date,
-      logName: 'Monty',
+      logName: this.logName,
       // location: [0, 1, 1, 0]  //getHighwayCoordinates(),
     }
     this.highwayService.addHighway(payLoad).subscribe(

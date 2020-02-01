@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
 import { MapToolsComponent } from './map-tools/map-tools.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { MapToolsComponent } from './map-tools/map-tools.component';
     AppRoutingModule,
     NgbModule,
     SidebarModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
   ],
   providers: [NgbActiveModal],
   bootstrap: [AppComponent],
