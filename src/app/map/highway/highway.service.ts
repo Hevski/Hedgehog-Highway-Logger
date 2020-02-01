@@ -1,9 +1,9 @@
-import { environment } from './../../../environments/environment';
-import { MapService } from './../map.service';
+import { environment } from '../../../environments/environment';
+import { MapService } from '../map.service';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Highway } from '../highway/highway.model'
+import { Highway } from './highway.model'
 
 @Injectable({
   providedIn: 'root'

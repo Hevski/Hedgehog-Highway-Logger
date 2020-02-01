@@ -1,9 +1,9 @@
 import { MapService } from './map.service';
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Component, OnInit, Input } from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit } from '@angular/core';
 import 'ol/ol.css';
 import { Draw, Modify, Snap } from 'ol/interaction';
-import { HighwayService } from '../map/highway/highway.service'
+import { HighwayService } from './highway/highway.service'
 import { Highway } from './highway/highway.model';
 
 @Component({
