@@ -13,4 +13,7 @@ class Highway(db.Model):
 
     def __repr__(self):
         return '<id {}>'.format(self.id)
+
+    # def add_highway(self):
+        # add highway with sqlalchamy
         
