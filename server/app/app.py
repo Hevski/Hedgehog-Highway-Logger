@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify, abort, request
 from flask_sqlalchemy import SQLAlchemy
 import os
 
@@ -9,14 +9,12 @@ db = SQLAlchemy(app)
 
 from models.highway import Highway
 
-@app.route('/')
-@app.route('/index')
+@app.route('/highway/', methods=['GET'])
 def index():
-    return "Hello, World!"
+    return jsonify({'highways': Highway.query.all()})
 
 if __name__ == "__main__":
     app.run(debug=True)
-
 
 # @app.route('/highway/add', methods=["POST"])
 # def add_highway():
