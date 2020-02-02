@@ -1,19 +1,20 @@
-from app import db 
+from app import db, ma
 from flask_sqlalchemy import SQLAlchemy
 
 class Highway(db.Model):
     __tablename__ = 'highways'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
-    date = db.Column(db.Date)
 
-    def __init__(self, name, date):
+    def __init__(self, name):
         self.name = name
-        self.date = date
+        # self.date = date
 
     def __repr__(self):
         return '<id {}>'.format(self.id)
+    # date = db.Column(db.Date)
 
-    # def add_highway(self):
-        # add highway with sqlalchamy
-        
+class HighwaySchema(ma.ModelSchema):
+    class Meta:
+        model = Highway
+        sqla_session = db.session

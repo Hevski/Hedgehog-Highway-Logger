@@ -1,5 +1,5 @@
 export class Highway {
-//   logDate: Date;
+  // logDate: Date;
   logName: string;
 //   location: Array<any>;
 }
