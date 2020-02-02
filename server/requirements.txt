@@ -8,5 +8,5 @@ requests==2.21.0
 oauthlib==3.0.1
 pyOpenSSL==19.0.0
 Flask-Login==0.4.1
-Flask-SQLAlchemy==1.0
 Flask-WTF==0.9.3
+Flask-SQLAlchemy==2.4.1
