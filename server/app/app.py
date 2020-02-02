@@ -12,29 +12,27 @@ ma = Marshmallow(app)
 
 from models.highway import Highway, HighwaySchema
 
+if __name__ == "__main__":
+    app.run(debug=True)
+
 @app.route('/highways/', methods=['GET'])
 def index():
         highways = Highway.query.all()
         highway_schema = HighwaySchema(many=True)
         return jsonify({'highway': highway_schema.dump(highways)})
 
-
 # @app.route('/highway/<int:id>/')
 # def get_highway(id):
 #     return jsonify({'highway': Highway.query.get(id)})
 
-
-# @app.route('/highway/', methods=['POST'])
-# def create_highway():
-#     if not request.json or not 'name' in request.json:
-#         abort(400)
-#     highway = Highway(request.json.name)
-#     db.session.add(highway)
-#     db.session.commit()
-#     return jsonify({'highway': highway}), 201
-
-if __name__ == "__main__":
-    app.run(debug=True)
+@app.route('/highway/', methods=['POST'])
+def create_highway():
+    if not request.json or not 'name' in request.json:
+        abort(400)
+    highway = Highway(request.json.name)
+    db.session.add(highway)
+    db.session.commit()
+    return jsonify({'highway': highway}), 201
 
 # @app.route('/highway/add', methods=["POST"])
 # def add_highway():

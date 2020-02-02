@@ -20,7 +20,7 @@ export class MapComponent implements OnInit {
   highwaySaved = false;
   opened: boolean = false;
   // logDate = new Date;
-  logName = '' //data binding not working from form input
+  name = '' //data binding not working from form input
   
   constructor(
     private mapService: MapService,
@@ -55,7 +55,7 @@ export class MapComponent implements OnInit {
   saveHighway() {
     const payLoad: Highway = {
       // logDate: new Date,
-      logName: 'Monty',
+      logName: this.name,
       // location: [0, 1, 1, 0]  //getHighwayCoordinates(),
     }
     this.highwayService.addHighway(payLoad).subscribe(
