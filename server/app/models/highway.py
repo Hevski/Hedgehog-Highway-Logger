@@ -1,12 +1,5 @@
+from app import db 
 from flask_sqlalchemy import SQLAlchemy
-
-db = SQLAlchemy()
-
-class User(db.Model):
-    __tablename__ = 'users'
-    id = db.Column(db.Integer, primary_key=True)
-    highway_id = db.Column(db.Integer, db.ForeignKey('highway.id'))
-    highway = db.Relationship('Highway')
 
 class Highway(db.Model):
     __tablename__ = 'highways'
@@ -14,4 +7,10 @@ class Highway(db.Model):
     name = db.Column(db.String)
     date = db.Column(db.Date)
 
+    def __init__(self, name, date):
+        self.name = name
+        self.date = date
 
+    def __repr__(self):
+        return '<id {}>'.format(self.id)
+        
