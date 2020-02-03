@@ -27,8 +27,9 @@ def index():
 
 @app.route('/highway/', methods=['POST'])
 def create_highway():
-    if not request.json or not 'name' in request.json:
-        abort(400)
+    json_data = request.json(force=True)
+    if not json_data:
+        return {'message': 'No input data provided'}, 400
     highway = Highway(request.json.name)
     db.session.add(highway)
     db.session.commit()
