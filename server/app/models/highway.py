@@ -14,6 +14,10 @@ class Highway(db.Model):
         return '<id {}>'.format(self.id)
     # date = db.Column(db.Date)
 
+    def insertHighway(self):
+        """ Adds a new highway to db """
+        db.session.add(self)
+
 class HighwaySchema(ma.ModelSchema):
     class Meta:
         model = Highway

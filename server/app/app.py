@@ -1,7 +1,7 @@
-
 from flask import Flask, jsonify, abort, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
+from flask_cors import CORS
 import os
 
 app = Flask(__name__)
@@ -9,6 +9,7 @@ app.config.from_object(os.environ['APP_SETTINGS'])
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
+CORS(app)
 
 from models.highway import Highway, HighwaySchema
 
@@ -31,7 +32,7 @@ def create_highway():
     if not json_data:
         return {'message': 'No input data provided'}, 400
     highway = Highway(request.json.name)
-    db.session.add(highway)
+    Highway().insertHighway(highway)
     db.session.commit()
     return jsonify({'highway': highway}), 201
 
