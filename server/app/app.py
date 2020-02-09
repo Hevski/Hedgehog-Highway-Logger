@@ -32,11 +32,10 @@ def index():
 @app.route('/highway/', methods=['POST'])
 def create_highway():
     name = request.json['name']
-    print(name)
     new_highway = Highway(name)
     db.session.add(new_highway)
     db.session.commit()
-    return jsonify(new_highway)
+    return jsonify(new_highway), 201
 
 # @app.route('/highway/add', methods=["POST"])
 # def add_highway():
