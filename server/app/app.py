@@ -43,9 +43,10 @@ def create_highway():
     except:
         return jsonify('error saving highway'), 404
 
-# @app.route('/highway/add', methods=["POST"])
-# def add_highway():
-#     try:
-#         Highway().addHighway()
-#     except:
-#         return "cannot add highway"
+@app.route('/highway/<id>', methods=['DELETE'])
+def delete_highway(id):
+    try:
+        Highway.query.filter_by(id).delete()
+        db.session.commit()
+    except:
+        return jsonify('error deleting highway'), 404

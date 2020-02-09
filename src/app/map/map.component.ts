@@ -66,5 +66,13 @@ export class MapComponent implements OnInit {
       }
       )
   }
+
+  deleteHighway() {
+    this.highwayService.deleteHighway().subscribe(
+      res => {
+        console.log(res)
+      }
+    )
+  }
 }
           

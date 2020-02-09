@@ -24,4 +24,9 @@ export class HighwayService {
     const endPoint = `${environment.API_URL}/highway`;
     return this.http.post<any>(endPoint, highway)
   }
+
+  deleteHighway(): Observable<any> {
+    const endPoint = `${environment.API_URL}/highway/id`;
+    return this.http.delete<any>(endPoint)
+  }
 }
