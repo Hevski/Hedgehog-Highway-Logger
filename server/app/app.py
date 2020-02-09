@@ -13,6 +13,9 @@ CORS(app)
 
 from models.highway import Highway, HighwaySchema
 
+highway_schema = HighwaySchema()
+highways_schema = HighwaySchema(many=True)
+
 if __name__ == "__main__":
     app.run(debug=True)
 
@@ -28,13 +31,12 @@ def index():
 
 @app.route('/highway/', methods=['POST'])
 def create_highway():
-    json_data = request.json(force=True)
-    if not json_data:
-        return {'message': 'No input data provided'}, 400
-    highway = Highway(request.json.name)
-    Highway().insertHighway(highway)
+    name = request.json['name']
+    print(name)
+    new_highway = Highway(name)
+    db.session.add(new_highway)
     db.session.commit()
-    return jsonify({'highway': highway}), 201
+    return jsonify(new_highway)
 
 # @app.route('/highway/add', methods=["POST"])
 # def add_highway():

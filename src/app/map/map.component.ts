@@ -55,11 +55,12 @@ export class MapComponent implements OnInit {
   saveHighway() {
     const payLoad: Highway = {
       // logDate: new Date,
-      name: this.name,
+      name: this.name
       // location: [0, 1, 1, 0]  //getHighwayCoordinates(),
     }
     this.highwayService.addHighway(payLoad).subscribe(
       res => {
+        // this.name = 'Bob'
         console.log(res)
         this.highwaySaved = true;
       }
