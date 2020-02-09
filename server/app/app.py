@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from flask_cors import CORS
 import os
+from datetime import datetime
 
 app = Flask(__name__)
 app.config.from_object(os.environ['APP_SETTINGS'])
@@ -32,7 +33,8 @@ def index():
 @app.route('/highway/', methods=['POST'])
 def create_highway():
     name = request.json['name']
-    new_highway = Highway(name)
+    date = datetime.now()
+    new_highway = Highway(name, date)
     db.session.add(new_highway)
     db.session.commit()
     return jsonify(new_highway), 201

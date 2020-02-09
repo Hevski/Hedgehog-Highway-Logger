@@ -1,23 +1,25 @@
 from app import db, ma
 from flask_sqlalchemy import SQLAlchemy
+from marshmallow import fields
+from sqlalchemy.sql import func
+from sqlalchemy import DateTime
+import datetime as datetime
 
 class Highway(db.Model):
     __tablename__ = 'highways'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), unique=True)
+    date = db.Column(DateTime, default=datetime.datetime.utcnow)
 
-    def __init__(self, name):
+    def __init__(self, name, date):
         self.name = name
-        # self.date = date
+        self.date = date
 
     def __repr__(self):
         return '<id {}>'.format(self.id)
-    # date = db.Column(db.Date)
-
-    # def insertHighway(self):
-    #     """ Adds a new highway to db """
-    #     db.session.add(self)
 
 class HighwaySchema(ma.Schema):
     class Meta:
-        fields = ('name',)
+        id = fields.Integer(dump_only=True)
+        name = fields.String(required=True)
+        date = fields.Date
