@@ -20,24 +20,28 @@ highways_schema = HighwaySchema(many=True)
 if __name__ == "__main__":
     app.run(debug=True)
 
-@app.route('/highways/', methods=['GET'])
+@app.route('/highways', methods=['GET'])
 def index():
         highways = Highway.query.all()
         highway_schema = HighwaySchema(many=True)
         return jsonify({'highway': highway_schema.dump(highways)})
 
-# @app.route('/highway/<int:id>/')
-# def get_highway(id):
-#     return jsonify({'highway': Highway.query.get(id)})
+@app.route('/highway/<id>')
+def get_highway(id):
+    highway = Highway.query.get(id)
+    return highway_schema.dump(highway)#jsonify({'highway': Highway.query.get(id)})
 
-@app.route('/highway/', methods=['POST'])
+@app.route('/highway', methods=['POST'])
 def create_highway():
-    name = request.json['name']
-    date = datetime.now()
-    new_highway = Highway(name, date)
-    db.session.add(new_highway)
-    db.session.commit()
-    return jsonify(new_highway), 201
+    try:
+        name = request.json['name']
+        date = datetime.now()
+        new_highway = Highway(name, date)
+        db.session.add(new_highway)
+        db.session.commit()
+        return jsonify(highway_schema.dump(new_highway)), 201
+    except:
+        return jsonify('error saving highway'), 404
 
 # @app.route('/highway/add', methods=["POST"])
 # def add_highway():

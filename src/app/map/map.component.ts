@@ -17,7 +17,7 @@ export class MapComponent implements OnInit {
   draw: any;
   vectorSource: any;
   modify: any;
-  highwaySaved = false;
+  highwaySaved: boolean = false;
   opened: boolean = false;
   // logDate = new Date;
   name = '' //data binding not working from form input
@@ -54,18 +54,17 @@ export class MapComponent implements OnInit {
 
   saveHighway() {
     const payLoad: Highway = {
-      // logDate: new Date,
       name: this.name
       // location: [0, 1, 1, 0]  //getHighwayCoordinates(),
-    }
+    };
     this.highwayService.addHighway(payLoad).subscribe(
       res => {
-        // this.name = 'Bob'
-        console.log(res)
         this.highwaySaved = true;
+      },
+      error => {
+        this.highwaySaved = false;
       }
-    )
+      )
   }
-
 }
           

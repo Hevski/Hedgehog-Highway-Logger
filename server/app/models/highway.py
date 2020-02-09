@@ -20,6 +20,8 @@ class Highway(db.Model):
 
 class HighwaySchema(ma.Schema):
     class Meta:
-        id = fields.Integer(dump_only=True)
-        name = fields.String(required=True)
-        date = fields.Date
+        fields = ("name", "date")
+
+        # id = fields.Integer(dump_only=True)
+        # name = fields.String(required=True)
+        # date = fields.String(required=True)

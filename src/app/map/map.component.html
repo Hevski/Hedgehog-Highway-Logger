@@ -18,12 +18,10 @@
     <ng-sidebar class="sidebar-button" position="right" mode="over" [(opened)]="opened">
       <p class="header" >Your Hedgehog Highway</p>
       <p class="steps" >Step 1: Add your highway to the map</p>
-      <p class="steps" >Step 2: Fill in the form</p>
+      <p class="steps" >Step 2: Name your highway</p>
       <form class="highway-form">
-        <p>Name your highway:</p>
+        <p>Name:</p>
         <input type="text" name="name" [(ngModel)]="name">
-        <p>Date:</p>
-        <input type="date">
       </form>
       <button type="button" class="btn btn-primary" (click)="saveHighway()">Save Highway</button>
       <ngb-alert *ngIf="highwaySaved" [dismissible]="false" type="success">
