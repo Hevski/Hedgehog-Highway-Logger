@@ -50,6 +50,14 @@ export class MapService {
     });
   }
 
+  getHighwayCoordinates() {
+    const highwayCoordinates = this.vectorSource.getFeatures();
+    // Go through this array and get coordinates of their geometry.
+    highwayCoordinates.forEach(function (highway) {
+        console.log(highway.getGeometry().getCoordinates());
+      });
+    }
+
   getMap() {
     return this.map;
   }

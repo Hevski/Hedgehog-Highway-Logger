@@ -19,8 +19,7 @@ export class MapComponent implements OnInit {
   modify: any;
   highwaySaved: boolean = false;
   opened: boolean = false;
-  // logDate = new Date;
-  name = '' //data binding not working from form input
+  name = ''
   
   constructor(
     private mapService: MapService,
@@ -48,6 +47,8 @@ export class MapComponent implements OnInit {
     this.mapService.map.addInteraction(this.modify);
   }
 
+
+
   toggleSidebar() {
     this.opened = !this.opened;
   }
@@ -59,6 +60,7 @@ export class MapComponent implements OnInit {
     };
     this.highwayService.addHighway(payLoad).subscribe(
       res => {
+        this.mapService.getHighwayCoordinates();
         this.highwaySaved = true;
       },
       error => {

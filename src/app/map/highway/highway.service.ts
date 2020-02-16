@@ -15,11 +15,6 @@ export class HighwayService {
     private mapService: MapService,
   ) { }
 
-  // getHighwayCoordinates() {
-  //   const map = this.mapService.getMap();
-  //   return map.getCoordinates();//TODO: work out how to use this from ol
-  // }
-
   addHighway(highway: Highway): Observable<any> {
     const endPoint = `${environment.API_URL}/highway`;
     return this.http.post<any>(endPoint, highway)
