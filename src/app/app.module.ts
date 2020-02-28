@@ -1,4 +1,3 @@
-import { ModalComponent } from './modal/modal.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -16,7 +15,6 @@ import { FormsModule } from '@angular/forms';
     AppComponent,
     MapComponent,
     MapToolsComponent,
-    ModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,8 +26,6 @@ import { FormsModule } from '@angular/forms';
   ],
   providers: [NgbActiveModal],
   bootstrap: [AppComponent],
-  entryComponents: [
-    ModalComponent,
-  ],
+  entryComponents: [],
 })
 export class AppModule { }

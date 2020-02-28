@@ -8,11 +8,15 @@ import datetime as datetime
 class Highway(db.Model):
     __tablename__ = 'highways'
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80), unique=True)
+    name = db.Column(db.String(100), unique=True)
+    lat = db.Column(db.Float(asdecimal=True))
+    lng = db.Column(db.Float(asdecimal=True))
     date = db.Column(DateTime, default=datetime.datetime.utcnow)
 
-    def __init__(self, name, date):
+    def __init__(self, name, lat, lng, date):
         self.name = name
+        self.lat = lat
+        self.lng = lng
         self.date = date
 
     def __repr__(self):
@@ -20,8 +24,4 @@ class Highway(db.Model):
 
 class HighwaySchema(ma.Schema):
     class Meta:
-        fields = ("name", "date")
-
-        # id = fields.Integer(dump_only=True)
-        # name = fields.String(required=True)
-        # date = fields.String(required=True)
+        fields = ("name", "lat", "lng", "date")

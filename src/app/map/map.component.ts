@@ -54,13 +54,17 @@ export class MapComponent implements OnInit {
   }
 
   saveHighway() {
+    const highwayCoordinatesArray = this.mapService.getHighwayCoordinates();
+    console.log(highwayCoordinatesArray);
+    
     const payLoad: Highway = {
-      name: this.name
-      // location: [0, 1, 1, 0]  //getHighwayCoordinates(),
+      name: this.name,
+      lat: highwayCoordinatesArray[0][0],
+      lng: highwayCoordinatesArray[0][1]
     };
+    console.log(payLoad)
     this.highwayService.addHighway(payLoad).subscribe(
       res => {
-        this.mapService.getHighwayCoordinates();
         this.highwaySaved = true;
       },
       error => {

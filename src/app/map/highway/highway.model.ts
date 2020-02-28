@@ -1,4 +1,5 @@
 export class Highway {
   name: string;
-//   location: Array<any>;
+  lat: number;
+  lng: number;
 }

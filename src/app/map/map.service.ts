@@ -52,10 +52,13 @@ export class MapService {
 
   getHighwayCoordinates() {
     const highwayCoordinates = this.vectorSource.getFeatures();
+    let geometryCoordinates = []
     // Go through this array and get coordinates of their geometry.
     highwayCoordinates.forEach(function (highway) {
-        console.log(highway.getGeometry().getCoordinates());
+       geometryCoordinates.push(highway.getGeometry().getCoordinates())
       });
+
+    return geometryCoordinates;
     }
 
   getMap() {

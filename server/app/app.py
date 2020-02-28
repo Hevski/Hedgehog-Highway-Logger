@@ -36,7 +36,9 @@ def create_highway():
     try:
         name = request.json['name']
         date = datetime.now()
-        new_highway = Highway(name, date)
+        lat = request.json['lat']
+        lng = request.json['lng']
+        new_highway = Highway(name, lat, lng, date)
         db.session.add(new_highway)
         db.session.commit()
         return jsonify(highway_schema.dump(new_highway)), 201
