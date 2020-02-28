@@ -9,8 +9,8 @@ class Highway(db.Model):
     __tablename__ = 'highways'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), unique=True)
-    lat = db.Column(db.Float(asdecimal=True))
-    lng = db.Column(db.Float(asdecimal=True))
+    lat = db.Column(db.String(100))
+    lng = db.Column(db.String(100))
     date = db.Column(DateTime, default=datetime.datetime.utcnow)
 
     def __init__(self, name, lat, lng, date):

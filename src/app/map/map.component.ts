@@ -59,8 +59,8 @@ export class MapComponent implements OnInit {
     
     const payLoad: Highway = {
       name: this.name,
-      lat: highwayCoordinatesArray[0][0],
-      lng: highwayCoordinatesArray[0][1]
+      lat: highwayCoordinatesArray[0][0].toString(),
+      lng: highwayCoordinatesArray[0][1].toString()
     };
     console.log(payLoad)
     this.highwayService.addHighway(payLoad).subscribe(

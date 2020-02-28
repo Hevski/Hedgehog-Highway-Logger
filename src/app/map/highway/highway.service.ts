@@ -16,12 +16,12 @@ export class HighwayService {
   ) { }
 
   addHighway(highway: Highway): Observable<any> {
-    const endPoint = `${environment.API_URL}/highway`;
+    const endPoint = `${environment.API_URL}/highways`;
     return this.http.post<any>(endPoint, highway)
   }
 
   deleteHighway(): Observable<any> {
-    const endPoint = `${environment.API_URL}/highway/id`;
+    const endPoint = `${environment.API_URL}/highways/id`;
     return this.http.delete<any>(endPoint)
   }
 }

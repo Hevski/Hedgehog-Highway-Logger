@@ -22,16 +22,16 @@ if __name__ == "__main__":
 
 @app.route('/highways', methods=['GET'])
 def index():
-        highways = Highway.query.all()
-        highway_schema = HighwaySchema(many=True)
-        return jsonify({'highway': highway_schema.dump(highways)})
+    highways = Highway.query.all()
+    highway_schema = HighwaySchema(many=True)
+    return jsonify({'highway': highway_schema.dump(highways)})
 
-@app.route('/highway/<id>')
+@app.route('/highways/<id>')
 def get_highway(id):
     highway = Highway.query.get(id)
     return highway_schema.dump(highway)#jsonify({'highway': Highway.query.get(id)})
 
-@app.route('/highway', methods=['POST'])
+@app.route('/highways', methods=['POST'])
 def create_highway():
     try:
         name = request.json['name']
@@ -45,7 +45,7 @@ def create_highway():
     except:
         return jsonify('error saving highway'), 404
 
-@app.route('/highway/<id>', methods=['DELETE'])
+@app.route('/highways/<id>', methods=['DELETE'])
 def delete_highway(id):
     try:
         Highway.query.filter_by(id).delete()
