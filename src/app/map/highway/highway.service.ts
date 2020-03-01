@@ -1,5 +1,4 @@
 import { environment } from '../../../environments/environment';
-import { MapService } from '../map.service';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -12,7 +11,6 @@ export class HighwayService {
 
   constructor(
     private http: HttpClient,
-    private mapService: MapService,
   ) { }
 
   addHighway(highway: Highway): Observable<any> {
@@ -23,5 +21,10 @@ export class HighwayService {
   deleteHighway(): Observable<any> {
     const endPoint = `${environment.API_URL}/highways/id`;
     return this.http.delete<any>(endPoint)
+  }
+
+  getAllHighways(): Observable<any> {
+    const endPoint = `${environment.API_URL}/highways`;
+    return this.http.get<any>(endPoint);
   }
 }

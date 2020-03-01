@@ -29,7 +29,7 @@ def index():
 @app.route('/highways/<id>')
 def get_highway(id):
     highway = Highway.query.get(id)
-    return highway_schema.dump(highway)#jsonify({'highway': Highway.query.get(id)})
+    return highway_schema.dump(highway)
 
 @app.route('/highways', methods=['POST'])
 def create_highway():

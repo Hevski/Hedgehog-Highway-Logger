@@ -47,16 +47,12 @@ export class MapComponent implements OnInit {
     this.mapService.map.addInteraction(this.modify);
   }
 
-
-
   toggleSidebar() {
     this.opened = !this.opened;
   }
 
   saveHighway() {
     const highwayCoordinatesArray = this.mapService.getHighwayCoordinates();
-    console.log(highwayCoordinatesArray);
-    
     const payLoad: Highway = {
       name: this.name,
       lat: highwayCoordinatesArray[0][0].toString(),
@@ -71,6 +67,14 @@ export class MapComponent implements OnInit {
         this.highwaySaved = false;
       }
       )
+  }
+
+  getAllHighways() {
+    this.highwayService.getAllHighways().subscribe(
+      res => {
+        console.log(res)
+      }
+    )
   }
 
   deleteHighway() {
