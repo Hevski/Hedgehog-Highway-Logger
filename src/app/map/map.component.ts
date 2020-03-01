@@ -20,6 +20,7 @@ export class MapComponent implements OnInit {
   highwaySaved: boolean = false;
   opened: boolean = false;
   name = ''
+  highwayLocations: any;
   
   constructor(
     private mapService: MapService,
@@ -28,7 +29,9 @@ export class MapComponent implements OnInit {
   ) { }
   
   ngOnInit() {
+    // load coords and make map with data
     this.mapService.initialiseMap();
+    this.getAllHighways()
   }   
             
   /**
@@ -72,7 +75,9 @@ export class MapComponent implements OnInit {
   getAllHighways() {
     this.highwayService.getAllHighways().subscribe(
       res => {
-        console.log(res)
+        let lat = res.highway[0].lat
+        let lng = res.highway[0].lng
+        this.highwayLocations = [lat, lng]
       }
     )
   }

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import 'ol/ol.css';
-import Map from 'ol/Map';
-import View from 'ol/View';
 import { OSM, Vector as VectorSource } from 'ol/source';
 import { fromLonLat } from 'ol/proj';
+import { Map, View, Feature } from 'ol/index';
+import { Point } from 'ol/geom';
 import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style';
 import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
 
@@ -17,12 +17,17 @@ export class MapService {
   constructor() { }
 
   initialiseMap() {
+    const point = new Point([-460940.437408841, 7546015.142254608]);
     const woodilee = [-4.14291973, 55.93130112];
     const woodileeWebMercator = fromLonLat(woodilee);
     this.vectorSource = new VectorSource();
     const raster = new TileLayer({ source: new OSM() });
     const vectorLayer = new VectorLayer({
-      source: this.vectorSource,
+      source: new VectorSource({
+        features: [
+          new Feature(point)
+        ]
+      }),
       style: new Style({
         fill: new Fill({
           color: 'rgba(255, 255, 255, 0.2)'
