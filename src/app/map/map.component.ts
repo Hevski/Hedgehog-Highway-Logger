@@ -1,3 +1,5 @@
+import { Feature } from 'ol/index';
+import { Point } from 'ol/geom';
 import { MapService } from './map.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit } from '@angular/core';
@@ -20,7 +22,8 @@ export class MapComponent implements OnInit {
   highwaySaved: boolean = false;
   opened: boolean = false;
   name = ''
-  highwayLocations: any;
+  allHighwaysArray: Array<any>;
+  featuresArray: Array<any>
   
   constructor(
     private mapService: MapService,
@@ -29,9 +32,12 @@ export class MapComponent implements OnInit {
   ) { }
   
   ngOnInit() {
-    // load coords and make map with data
-    this.mapService.initialiseMap();
-    this.getAllHighways()
+    this.highwayService.getAllHighways().subscribe(
+      res => {
+        this.allHighwaysArray = res.highway
+        this.mapService.initialiseMap(this.allHighwaysArray);
+      }
+    )
   }   
             
   /**
@@ -75,13 +81,10 @@ export class MapComponent implements OnInit {
   getAllHighways() {
     this.highwayService.getAllHighways().subscribe(
       res => {
-        let lat = res.highway[0].lat
-        let lng = res.highway[0].lng
-        this.highwayLocations = [lat, lng]
-      }
-    )
+        this.allHighwaysArray = res.highway
+      })
   }
-
+  
   deleteHighway() {
     this.highwayService.deleteHighway().subscribe(
       res => {

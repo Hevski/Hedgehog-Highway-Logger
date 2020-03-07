@@ -1,3 +1,5 @@
+import { Highway } from './highway/highway.model';
+import { HighwayService } from './highway/highway.service';
 import { Injectable } from '@angular/core';
 import 'ol/ol.css';
 import { OSM, Vector as VectorSource } from 'ol/source';
@@ -13,21 +15,25 @@ import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
 export class MapService {
   vectorSource: any;
   map: any;
+  allHighwaysArray: Array<any>;
 
-  constructor() { }
+  constructor(
+    private highwayService: HighwayService,
+  ) { }
 
-  initialiseMap() {
+  initialiseMap(highwaysArray) {
+    console.log(highwaysArray)
+    this.allHighwaysArray = highwaysArray
     const point = new Point([-460940.437408841, 7546015.142254608]);
+    const pointTwo = new Point([-461096.6331917382, 7545215.408649344]);
     const woodilee = [-4.14291973, 55.93130112];
     const woodileeWebMercator = fromLonLat(woodilee);
-    this.vectorSource = new VectorSource();
+    this.vectorSource = new VectorSource({
+      features: this.buildFeaturesArray()
+    });
     const raster = new TileLayer({ source: new OSM() });
     const vectorLayer = new VectorLayer({
-      source: new VectorSource({
-        features: [
-          new Feature(point)
-        ]
-      }),
+      source: this.vectorSource,
       style: new Style({
         fill: new Fill({
           color: 'rgba(255, 255, 255, 0.2)'
@@ -57,6 +63,10 @@ export class MapService {
 
   getHighwayCoordinates() {
     const highwayCoordinates = this.vectorSource.getFeatures();
+    console.log(this.vectorSource);
+    
+    console.log(highwayCoordinates);
+    
     let geometryCoordinates = []
     // Go through this array and get coordinates of their geometry.
     highwayCoordinates.forEach(function (highway) {
@@ -68,5 +78,18 @@ export class MapService {
 
   getMap() {
     return this.map;
+  }
+
+  buildFeaturesArray() {
+    let featuresArray = []
+    this.allHighwaysArray.map(highway => {
+      console.log(highway)
+      let lat = highway.lat
+      let lng = highway.lng
+      const point = new Point([lat, lng]);
+      featuresArray.push(new Feature(point))
+    })
+    console.log(featuresArray)
+    return featuresArray
   }
 }
