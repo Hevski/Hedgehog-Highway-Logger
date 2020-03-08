@@ -45,28 +45,35 @@ export class MapComponent implements OnInit {
    * Adds interactions to the map
    */
   addInteractions() {
-    this.toggleSidebar();
+    this.map = this.mapService.getMap();
     this.draw = new Draw({
       source: this.mapService.vectorSource,
-      type: 'Point'
+      type: 'Point',
     });
-    console.log('draw', this.draw)
-    this.mapService.map.addInteraction(this.draw);
+    this.map.addInteraction(this.draw);
     this.snap = new Snap({ source: this.mapService.vectorSource });
-    this.mapService.map.addInteraction(this.snap);
-    this.modify = new Modify({ source: this.mapService.vectorSource });
-    this.mapService.map.addInteraction(this.modify);
+    this.map.addInteraction(this.snap);
+    // this.modify = new Modify({ source: this.mapService.vectorSource });
+    // this.map.addInteraction(this.modify);
     this.activate();
   }
 
   toggleSidebar() {
     this.opened = !this.opened;
+    this.removeDrawInteraction();
+  }
+
+  removeDrawInteraction() {
+    this.mapService.getMap();
+    this.map.removeInteraction(this.draw);
+    this.map.un('singleclick', this.activate());
   }
 
   activate() {
     this.mapService.map.on('singleclick', function (evt) {
+      this.toggleSidebar()
       this.setActiveCoordinate(evt.coordinate)
-    }.bind(this))
+    }.bind(this));
   }
 
   setActiveCoordinate(coordinate) {
