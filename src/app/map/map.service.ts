@@ -22,10 +22,7 @@ export class MapService {
   ) { }
 
   initialiseMap(highwaysArray) {
-    console.log(highwaysArray)
     this.allHighwaysArray = highwaysArray
-    const point = new Point([-460940.437408841, 7546015.142254608]);
-    const pointTwo = new Point([-461096.6331917382, 7545215.408649344]);
     const woodilee = [-4.14291973, 55.93130112];
     const woodileeWebMercator = fromLonLat(woodilee);
     this.vectorSource = new VectorSource({
@@ -63,16 +60,11 @@ export class MapService {
 
   getHighwayCoordinates() {
     const highwayCoordinates = this.vectorSource.getFeatures();
-    console.log(this.vectorSource);
-    
-    console.log(highwayCoordinates);
-    
     let geometryCoordinates = []
     // Go through this array and get coordinates of their geometry.
     highwayCoordinates.forEach(function (highway) {
        geometryCoordinates.push(highway.getGeometry().getCoordinates())
       });
-
     return geometryCoordinates;
     }
 
@@ -83,13 +75,11 @@ export class MapService {
   buildFeaturesArray() {
     let featuresArray = []
     this.allHighwaysArray.map(highway => {
-      console.log(highway)
       let lat = highway.lat
       let lng = highway.lng
       const point = new Point([lat, lng]);
       featuresArray.push(new Feature(point))
     })
-    console.log(featuresArray)
     return featuresArray
   }
 }

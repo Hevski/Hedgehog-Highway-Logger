@@ -23,7 +23,8 @@ export class MapComponent implements OnInit {
   opened: boolean = false;
   name = ''
   allHighwaysArray: Array<any>;
-  featuresArray: Array<any>
+  featuresArray: Array<any>;
+  activeCoordinate: any;
   
   constructor(
     private mapService: MapService,
@@ -49,25 +50,35 @@ export class MapComponent implements OnInit {
       source: this.mapService.vectorSource,
       type: 'Point'
     });
+    console.log('draw', this.draw)
     this.mapService.map.addInteraction(this.draw);
     this.snap = new Snap({ source: this.mapService.vectorSource });
     this.mapService.map.addInteraction(this.snap);
     this.modify = new Modify({ source: this.mapService.vectorSource });
     this.mapService.map.addInteraction(this.modify);
+    this.activate();
   }
 
   toggleSidebar() {
     this.opened = !this.opened;
   }
 
+  activate() {
+    this.mapService.map.on('singleclick', function (evt) {
+      this.setActiveCoordinate(evt.coordinate)
+    }.bind(this))
+  }
+
+  setActiveCoordinate(coordinate) {
+    this.activeCoordinate = coordinate
+  }
+
   saveHighway() {
-    const highwayCoordinatesArray = this.mapService.getHighwayCoordinates();
     const payLoad: Highway = {
       name: this.name,
-      lat: highwayCoordinatesArray[0][0].toString(),
-      lng: highwayCoordinatesArray[0][1].toString()
+      lat: this.activeCoordinate[0].toString(),
+      lng: this.activeCoordinate[1].toString()
     };
-    console.log(payLoad)
     this.highwayService.addHighway(payLoad).subscribe(
       res => {
         this.highwaySaved = true;
