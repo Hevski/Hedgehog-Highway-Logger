@@ -25,6 +25,7 @@ export class MapComponent implements OnInit {
   allHighwaysArray: Array<any>;
   featuresArray: Array<any>;
   activeCoordinate: any;
+  highwaySaveError: boolean;
   
   constructor(
     private mapService: MapService,
@@ -92,8 +93,15 @@ export class MapComponent implements OnInit {
       },
       error => {
         this.highwaySaved = false;
+        this.highwaySaveError = true;
       }
       )
+  }
+
+  viewHighwayInfo() {
+    // select a point on map
+    // open up a popover when clicked
+    // store name, date, possibly coordinates
   }
 
   getAllHighways() {

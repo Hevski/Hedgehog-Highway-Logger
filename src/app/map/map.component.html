@@ -13,6 +13,7 @@
   <script src="index.js"></script>
   <form class="form-inline">
     <button type="button" class="btn btn-primary" (click)="addInteractions()">Add Highway</button>
+    <button type="button" class="btn btn-primary" (click)="ViewHighwayInfo()">View Highway Info</button>
     <!-- <button type="button" class="btn btn-primary" (click)="deleteHighway()">Delete Highway</button> -->
   </form>
   <ng-sidebar-container class="sidebar">
@@ -27,6 +28,9 @@
       <button type="button" class="btn btn-primary" (click)="saveHighway()">Save Highway</button>
       <ngb-alert *ngIf="highwaySaved" [dismissible]="false" type="success">
         Highway Saved Successfully!
+      </ngb-alert>
+      <ngb-alert *ngIf="highwaySaveError" [dismissible]="false" type="danger">
+        Error Saving Highway
       </ngb-alert>
     </ng-sidebar>
   </ng-sidebar-container>
