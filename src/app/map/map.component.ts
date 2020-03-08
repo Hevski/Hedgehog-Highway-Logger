@@ -1,5 +1,3 @@
-import { Feature } from 'ol/index';
-import { Point } from 'ol/geom';
 import { MapService } from './map.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit } from '@angular/core';
@@ -26,6 +24,7 @@ export class MapComponent implements OnInit {
   featuresArray: Array<any>;
   activeCoordinate: any;
   highwaySaveError: boolean;
+  // highway: Highway;
   
   constructor(
     private mapService: MapService,
@@ -34,6 +33,7 @@ export class MapComponent implements OnInit {
   ) { }
   
   ngOnInit() {
+    // this.highway = new Highway;
     this.highwayService.getAllHighways().subscribe(
       res => {
         this.allHighwaysArray = res.highway
@@ -81,14 +81,16 @@ export class MapComponent implements OnInit {
     this.activeCoordinate = coordinate
   }
 
-  saveHighway() {
+  saveHighway(id) {
     const payLoad: Highway = {
+      // id: id,
       name: this.name,
       lat: this.activeCoordinate[0].toString(),
       lng: this.activeCoordinate[1].toString()
     };
     this.highwayService.addHighway(payLoad).subscribe(
       res => {
+        console.log(res)
         this.highwaySaved = true;
       },
       error => {
@@ -97,6 +99,15 @@ export class MapComponent implements OnInit {
       }
       )
   }
+
+  // getHighway(highway) {
+  //   this.highway = highway
+  //   this.highwayService.getHighway(highway.id).subscribe(
+  //     res => {
+  //       console.log(res)
+  //     }
+  //   )
+  // }
 
   viewHighwayInfo() {
     // select a point on map
@@ -107,6 +118,7 @@ export class MapComponent implements OnInit {
   getAllHighways() {
     this.highwayService.getAllHighways().subscribe(
       res => {
+        console.log(res)
         this.allHighwaysArray = res.highway
       })
   }

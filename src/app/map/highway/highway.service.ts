@@ -27,4 +27,9 @@ export class HighwayService {
     const endPoint = `${environment.API_URL}/highways`;
     return this.http.get<any>(endPoint);
   }
+
+  getHighway(id): Observable<any> {
+    const endPoint = `${environment.API_URL}/highways/${id}`
+    return this.http.get<any>(endPoint);
+  }
 }
