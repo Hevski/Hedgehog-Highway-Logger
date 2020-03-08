@@ -58,16 +58,6 @@ export class MapService {
     });
   }
 
-  getHighwayCoordinates() {
-    const highwayCoordinates = this.vectorSource.getFeatures();
-    let geometryCoordinates = []
-    // Go through this array and get coordinates of their geometry.
-    highwayCoordinates.forEach(function (highway) {
-       geometryCoordinates.push(highway.getGeometry().getCoordinates())
-      });
-    return geometryCoordinates;
-    }
-
   getMap() {
     return this.map;
   }
