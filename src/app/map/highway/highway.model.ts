@@ -1,5 +1,5 @@
 export class Highway {
-  // id: number;
+  id: number;
   name: string;
   lat: string;
   lng: string;

@@ -24,7 +24,7 @@ export class MapComponent implements OnInit {
   featuresArray: Array<any>;
   activeCoordinate: any;
   highwaySaveError: boolean;
-  // highway: Highway;
+  highway: Highway;
   
   constructor(
     private mapService: MapService,
@@ -33,7 +33,7 @@ export class MapComponent implements OnInit {
   ) { }
   
   ngOnInit() {
-    // this.highway = new Highway;
+    this.highway = new Highway;
     this.highwayService.getAllHighways().subscribe(
       res => {
         this.allHighwaysArray = res.highway
@@ -83,7 +83,7 @@ export class MapComponent implements OnInit {
 
   saveHighway(id) {
     const payLoad: Highway = {
-      // id: id,
+      id: id,
       name: this.name,
       lat: this.activeCoordinate[0].toString(),
       lng: this.activeCoordinate[1].toString()
